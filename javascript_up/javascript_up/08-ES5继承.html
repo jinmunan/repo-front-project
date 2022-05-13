@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport"
+              content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Document</title>
+    </head>
+    <body>
+        <script>
+            // function fn() {
+            //     console.log("喝咖啡");
+            //     console.log(this)
+            // }
+            //
+            // var o = {
+            //     name: 'andy'
+            // }
+            // fn();
+            // fn.call();
+            // fn.call(o);
+
+
+            // function Father(uname, age) {
+            //     //this指向父构造函数的对象实例
+            //     this.uname = uname;
+            //     this.age = age;
+            // }
+            //
+            // Father.prototype.money = function () {
+            //     console.log("赚钱")
+            // }
+            //
+            // function Son(uname, age) {
+            //     //this指向子构造函数的对象实例
+            //     Father.call(this, uname, age) //改变指向
+            // }
+            // Son.prototype = Father.prototype
+            // Son.prototype.exam = function () {
+            //     console.log("考试")
+            // }
+            // var son = new Son("刘德华", 55);
+            // console.log(son);
+            // console.log(new Father());
+
+
+            function Father(uname, age) {
+                //this指向父构造函数的对象实例
+                this.uname = uname;
+                this.age = age;
+            }
+
+            Father.prototype.money = function () {
+                console.log("赚钱")
+            }
+
+            function Son(uname, age) {
+                //this指向子构造函数的对象实例
+                Father.call(this, uname, age) //改变指向
+            }
+
+            Son.prototype = new Father();
+            Son.prototype.constructor = Son;
+            //相当于给Father对象添加放啊发
+            Son.prototype.exam = function () {
+                console.log("考试")
+            }
+
+            var son = new Son("刘德华", 55);
+            console.log(son);
+            console.log(new Father());
+
+        </script>
+    </body>
+</html>
